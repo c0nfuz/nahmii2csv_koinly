@@ -1,16 +1,27 @@
-# nahmii2csv.py
+# nahmii2csv_koinly.py
 
-Parses swaps, liquidity mining, airdrops and Kiwii NFT Minting from Nahmii v2 and converts it to CSV, especially formatted for kryptosekken.no for tax calculations.
+Parses swaps, liquidity mining, airdrops and Kiwii NFT Minting from Nahmii v2 and converts it to CSV, especially formatted for koinly.com for tax calculations (instead of kryptosekken.no - used by original Nahmii2csv https://github.com/dsolstad/nahmii2csv).
 
 ## Usage
 
+Update the walletAddress inside the script.
+
 ```
-$ python3 nahmii2csv.py <wallet address>
-Tidspunkt,Type,Inn,Inn-Valuta,Ut,Ut-Valuta,Gebyr,Gebyr-Valuta,Marked,Notat
-2021-12-13 10:48:14,Handel,0.04,WBTC,100000.0,NII,0.00038065792,ETH,NiiFi,Swap,
-2021-12-14 17:13:14,Handel,1.2389102,NIIFI-WBTCNII,0.04,WBTC,0.00052652906,ETH,NiiFi,Add liquidity,
-2021-12-14 17:13:14,Handel,1.2389102,NIIFI-WBTCNII,224875.870,NII,0.0005146315,ETH,NiiFi,Add liquidity,
-2021-12-15 12:11:45,Renteinntekt,13606.26786322117,NIIFI,,,,,NiiFi,Airdrop: Liquidity Mining,
+$ python3 nahmii2csv_koinly.py
+Fetching from wallet address: 0x1219A412820B9dde2c9122Be13528113eF6bf222
+To use other wallet address, update walletAddress in script or use: $ python3 nahmii2csv_koinly.py <wallet address>
+Date,TxHash,Received Amount,Received Currency,Sent Amount,Sent Currency,Fee Amount,Fee Currency,Description,Tag
+2021-11-11 12:01:31,0xeca4b654ac654c65c46a46c54bc65b4a4c46c5a4c565c4c767c6c8c8a8882341,122.3,LP1,700000.0,NII,0.000536202925,ETH,NiiFi,Liquidity in,
+2021-11-11 12:01:31,0xeca4b654ac654c65c46a46c54bc65b4a4c46c5a4c565c4c767c6c8c8a8882341,122.2,LP1,90000.182,NIIFI,0,ETH,NiiFi,Liquidity in,
+```
+
+or run with:
+```
+$ python3 nahmii2csv_koinly.py <wallet address>
+Fetching from wallet address: 0x1219A432820B9dde3c9122Be13528113eF6bf222
+Date,TxHash,Received Amount,Received Currency,Sent Amount,Sent Currency,Fee Amount,Fee Currency,Description,Tag
+2021-11-11 12:01:31,0xeca4b654ac654c65c46a46c54bc65b4a4c46c5a4c565c4c767c6c8c8a8882341,122.3,LP1,700000.0,NII,0.000536202925,ETH,NiiFi,Liquidity in,
+2021-11-11 12:01:31,0xeca4b654ac654c65c46a46c54bc65b4a4c46c5a4c565c4c767c6c8c8a8882341,122.2,LP1,90000.182,NIIFI,0,ETH,NiiFi,Liquidity in,
 ```
 
 ## Kiwii NFT Minting
@@ -34,7 +45,7 @@ Example: You transferred 10000 NII to the trusted bridge, and after paying 0.5% 
 
 The entry will look like the following in CSV:
 ```
-2022-06-17 23:36:28,Overføring-Inn,1000,NII,,,50.0000435,NII,NiiFi,Trusted Bridge Transfer,
+2022-03-11 23:16:08,0xda176396b61663b29306c30e8b2bb6a4bc8b39e95e17936c87b696a58ae74655,1000,NII,,,3152.48240,NII,NiiFi,Trusted Bridge Transfer,
 ```
 
 Note: The Trusted Bridge was mostly complete at 2022/06/17, but a few transfers were still not complete. You need to edit the script if you received the funds from the trusted bridge at a later stage.
@@ -44,4 +55,4 @@ https://blog.nahmii.io/nahmii-1-0-to-nahmii-2-0-trusted-bridge-announced-661c0ca
 https://blog.nahmii.io/nahmii-1-0-to-nahmii-2-0-trusted-bridge-payments-completed-e1b4bc1fc0b0
 
 ## Disclaimer
-Please verify each transaction manually as nahmii2csv provide no guarentee that everything is correct.
+Please verify each transaction manually as nahmii2csv_koinly provide no guarentee that everything is correct.
